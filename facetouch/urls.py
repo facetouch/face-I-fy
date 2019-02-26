@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from facetouch.views import create_event
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^event/create', create_event),
 ]
