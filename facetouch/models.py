@@ -10,6 +10,7 @@ class Event(models.Model):
     time_stamp = models.CharField(default="", max_length=100)
     is_consumed = models.BooleanField(default=False)
 
+
 # class Item():
 
 #
