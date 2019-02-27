@@ -5,6 +5,7 @@ import pyautogui as pag
 import imutils
 import dlib
 import cv2
+import requests
 
 # Thresholds and consecutive frame length for triggering the mouse action.
 MOUTH_AR_THRESH = 0.4
@@ -159,6 +160,10 @@ while True:
         print MOUTH_COUNTER
 
         if MOUTH_COUNTER >= MOUTH_AR_CONSECUTIVE_FRAMES:
+            event_info = {}
+            event_info[name] = "event_name"
+            event_info[id] = 2
+            requests.post("127.0.0.1:8000/event/create", "")
             # import pdb;pdb.set_trace();
             # if the alarm is not on, turn it on
             INPUT_MODE = not INPUT_MODE
@@ -170,7 +175,7 @@ while True:
         MOUTH_COUNTER = 0
 
     if INPUT_MODE:
-        cv2.putText(frame, "READING INPUT!", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, RED_COLOR, 2)
+        # cv2.putText(frame, "READING INPUT!", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, RED_COLOR, 2)
         x, y = ANCHOR_POINT
         nx, ny = nose_point
         w, h = 60, 35
@@ -219,3 +224,5 @@ while True:
 # Do a bit of cleanup
 cv2.destroyAllWindows()
 vid.release()
+
+
