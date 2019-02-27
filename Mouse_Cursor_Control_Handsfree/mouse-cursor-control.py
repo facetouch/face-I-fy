@@ -5,16 +5,28 @@ import pyautogui as pag
 import imutils
 import dlib
 import cv2
+import json
 import requests
+
+URL = "http://127.0.0.1:8000"
+
+
+def send_event(event_name):
+    print event_name
+    action_details = {"event_name": event_name}
+    request = requests.post(URL + '/event/create', data=json.dumps(action_details))
+    if request.status_code != 200:
+        raise Exception
+
 
 # Thresholds and consecutive frame length for triggering the mouse action.
 MOUTH_AR_THRESH = 0.4
 MOUTH_AR_CONSECUTIVE_FRAMES = 15
 EYE_AR_THRESH = 0.19
-EYE_AR_CONSECUTIVE_FRAMES = 15
+EYE_AR_CONSECUTIVE_FRAMES = 3
 WINK_AR_DIFF_THRESH = 0.04
-WINK_AR_CLOSE_THRESH = 0.19
-WINK_CONSECUTIVE_FRAMES = 10
+WINK_AR_CLOSE_THRESH = 0.1
+WINK_CONSECUTIVE_FRAMES = 4
 
 # Initialize the frame counters for each action as well as 
 # booleans used to indicate if action is performed or not
@@ -36,7 +48,7 @@ BLACK_COLOR = (0, 0, 0)
 
 # Initialize Dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
-shape_predictor = "model/shape_predictor_68_face_landmarks.dat"
+shape_predictor = "/Users/anip/Develop/facetouch/Mouse_Cursor_Control_Handsfree/model/shape_predictor_68_face_landmarks.dat"
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(shape_predictor)
 
@@ -114,16 +126,22 @@ while True:
 
     for (x, y) in np.concatenate((mouth, leftEye, rightEye), axis=0):
         cv2.circle(frame, (x, y), 2, GREEN_COLOR, -1)
-        
+
     # Check to see if the eye aspect ratio is below the blink
     # threshold, and if so, increment the blink frame counter
+    print "diff_ear{}".format(diff_ear)
     if diff_ear > WINK_AR_DIFF_THRESH:
+        # import pdb;pdb.set_trace()
         if leftEAR < rightEAR:
             if leftEAR < EYE_AR_THRESH:
                 WINK_COUNTER += 1
+                print "WINK_COUNTER-{}".format(WINK_COUNTER)
 
                 if WINK_COUNTER > WINK_CONSECUTIVE_FRAMES:
-                    pag.click(button='left')
+                    import pdb;
+
+                    pdb.set_trace()
+                    send_event("left_click")
 
                     WINK_COUNTER = 0
 
@@ -133,7 +151,11 @@ while True:
                 WINK_COUNTER += 1
 
                 if WINK_COUNTER > WINK_CONSECUTIVE_FRAMES:
-                    pag.click(button='right')
+                    # pag.click(button='right')
+                    import pdb;
+
+                    pdb.set_trace()
+                    send_event("right_click")
 
                     WINK_COUNTER = 0
         else:
@@ -160,10 +182,7 @@ while True:
         print MOUTH_COUNTER
 
         if MOUTH_COUNTER >= MOUTH_AR_CONSECUTIVE_FRAMES:
-            event_info = {}
-            event_info[name] = "event_name"
-            event_info[id] = 2
-            requests.post("127.0.0.1:8000/event/create", "")
+            send_event("mouth_movement")
             # import pdb;pdb.set_trace();
             # if the alarm is not on, turn it on
             INPUT_MODE = not INPUT_MODE
@@ -187,22 +206,26 @@ while True:
         cv2.putText(frame, dir.upper(), (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.7, RED_COLOR, 2)
         drag = 18
         if dir == 'right':
-            pag.moveRel(drag, 0)
+            send_event("move_right")
+            # pag.moveRel(drag, 0)
         elif dir == 'left':
-            pag.moveRel(-drag, 0)
+            send_event("left")
+            # pag.moveRel(-drag, 0)
         elif dir == 'up':
-            if SCROLL_MODE:
-                pag.scroll(40)
-            else:
-                pag.moveRel(0, -drag)
+            send_event("up")
+            # if SCROLL_MODE:
+            #     pag.scroll(40)
+            # else:
+            #     pag.moveRel(0, -drag)
         elif dir == 'down':
-            if SCROLL_MODE:
-                pag.scroll(-40)
-            else:
-                pag.moveRel(0, drag)
-
-    if SCROLL_MODE:
-        cv2.putText(frame, 'SCROLL MODE IS ON!', (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, RED_COLOR, 2)
+            send_event("down")
+            # if SCROLL_MODE:
+            #     pag.scroll(-40)
+            # else:
+            #     pag.moveRel(0, drag)
+    #
+    # if SCROLL_MODE:
+    #     cv2.putText(frame, 'SCROLL MODE IS ON!', (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, RED_COLOR, 2)
 
     # cv2.putText(frame, "MAR: {:.2f}".format(mar), (500, 30),
     #             cv2.FONT_HERSHEY_SIMPLEX, 0.7, YELLOW_COLOR, 2)
@@ -224,5 +247,3 @@ while True:
 # Do a bit of cleanup
 cv2.destroyAllWindows()
 vid.release()
-
-

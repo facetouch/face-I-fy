@@ -14,7 +14,7 @@ def create_event(request):
         event.save()
     return JsonResponse({'status': 200})
 
-
+@csrf_exempt
 def get_event(request):
     if request.method == 'GET':
         events = Event.objects.all()
