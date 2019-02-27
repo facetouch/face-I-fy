@@ -159,7 +159,7 @@ while True:
         print MOUTH_COUNTER
 
         if MOUTH_COUNTER >= MOUTH_AR_CONSECUTIVE_FRAMES:
-            import pdb;pdb.set_trace();
+            # import pdb;pdb.set_trace();
             # if the alarm is not on, turn it on
             INPUT_MODE = not INPUT_MODE
             # SCROLL_MODE = not SCROLL_MODE
