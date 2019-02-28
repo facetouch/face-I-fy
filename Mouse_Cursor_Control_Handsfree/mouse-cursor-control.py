@@ -138,9 +138,9 @@ while True:
                 print "WINK_COUNTER-{}".format(WINK_COUNTER)
 
                 if WINK_COUNTER > WINK_CONSECUTIVE_FRAMES:
-                    import pdb;
-
-                    pdb.set_trace()
+                    # import pdb;
+                    #
+                    # pdb.set_trace()
                     send_event("left_click")
 
                     WINK_COUNTER = 0
@@ -152,9 +152,9 @@ while True:
 
                 if WINK_COUNTER > WINK_CONSECUTIVE_FRAMES:
                     # pag.click(button='right')
-                    import pdb;
-
-                    pdb.set_trace()
+                    # import pdb;
+                    #
+                    # pdb.set_trace()
                     send_event("right_click")
 
                     WINK_COUNTER = 0

@@ -22,6 +22,6 @@ def get_event(request):
             if not event.is_consumed:
                 event.is_consumed = True
                 event.save()
-                return JsonResponse({"event_name": event.event_name, "timestamp": event.time_stamp})
+                return JsonResponse({'event_name': event.event_name, 'timestamp': event.time_stamp})
 
     return JsonResponse({'status': 'no new event'})
