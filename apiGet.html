@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>FaceTouch.com Test API</h1>
+
+<!-- <button type="button" onclick="loadDoc()">Request data</button> -->
+
+<p id="demo"></p>
+
+
+<script>
+	var duration = 5000,
+    interval = 200,
+    intervalTimer;
+
+intervalTimer = setInterval(function() {
+    loadDoc();
+}, interval);
+
+setTimeout(function() {
+    clearInterval(intervalTimer);
+}, duration);
+
+function loadDoc() {
+  var xhttp = new XDomainRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
