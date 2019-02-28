@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 align="center">FaceTouch.com Test API</h1>
+
+
+<div align="center">
+    <p id="event_name">Event Name: </p>
+    <p id="timestamp">Timestamp: </p>
+</div>
+
+
+<script>
+	 var duration = 5000,
+     interval = 2000,
+     intervalTimer;
+     intervalTimer = setInterval(function() {
+         loadDoc();
+     }, interval);
+     setTimeout(function() {
+         clearInterval(intervalTimer);
+     }, duration);
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var responseObj = JSON.parse(this.responseText);
+    if(!(event_name in responseObj)){
+    document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;
+    document.getElementById("timestamp").innerHTML = "";
+    }
+    else{
+        document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;
+        document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;
+    }
+    }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
