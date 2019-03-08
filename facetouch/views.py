@@ -1,8 +1,10 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from facetouch.models import Event
 from datetime import datetime
+from django.views.generic import TemplateView
 
 
 @csrf_exempt
@@ -31,3 +33,13 @@ def get_event(request):
                 return JsonResponse({'event_name': event.event_name, 'timestamp': event.time_stamp})
 
     return JsonResponse({'status': 'no new event'})
+
+
+class HomePageView(TemplateView):
+    template_name = "index.html"
+
+
+class EventsPageView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        context = {'data': Event.objects.all()}
+        return render(request, 'show_events.html', context)
