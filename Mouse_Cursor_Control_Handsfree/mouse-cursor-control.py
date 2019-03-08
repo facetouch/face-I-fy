@@ -48,7 +48,8 @@ BLACK_COLOR = (0, 0, 0)
 
 # Initialize Dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
-shape_predictor = "model/shape_predictor_68_face_landmarks.dat"
+
+shape_predictor = "/model/shape_predictor_68_face_landmarks.dat"
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(shape_predictor)
 
@@ -209,16 +210,16 @@ while True:
             send_event("move_right")
             # pag.moveRel(drag, 0)
         elif dir == 'left':
-            send_event("left")
+            send_event("move_left")
             # pag.moveRel(-drag, 0)
         elif dir == 'up':
-            send_event("up")
+            send_event("move_up")
             # if SCROLL_MODE:
             #     pag.scroll(40)
             # else:
             #     pag.moveRel(0, -drag)
         elif dir == 'down':
-            send_event("down")
+            send_event("move_down")
             # if SCROLL_MODE:
             #     pag.scroll(-40)
             # else:

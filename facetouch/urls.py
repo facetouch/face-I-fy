@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from facetouch.views import create_event, get_event
+from facetouch.views import create_event, get_event, HomePageView, EventsPageView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^event/create', create_event),
     url(r'^event/getFirst', get_event),
+    url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^events/$', EventsPageView.as_view(), name='events'),  # Add this URL pattern
+
 ]
