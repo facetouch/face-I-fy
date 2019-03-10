@@ -1,7 +1,19 @@
 <!-- djangotemplates/example/templates/data.html -->
 
-{#{% extends 'base.html' %}#}
+<!--{#{% extends 'base.html' %}#}-->
 <!DOCTYPE html>
+<style>
+ul#menu li {
+  display:inline;
+}
+
+ul#menu div {
+  display:inline;
+}
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -12,22 +24,64 @@
     <div class="table-div">
     <!-- We will display our data in a normal HTML table using Django's
     template for-loop to generate our table rows for us-->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Event Name</th>
-            <th>Time Stamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for event in data %}
-            <tr>
-              <td>{{ event.event_name }}</td>
-              <td>{{ event.time_stamp }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+
+      <ul id="menu">
+        {% for item in data %}
+        <li>
+        <!--<div>-->
+          <!--<img src={{item.image_url}} class="w3-opacity-max"  style="width:300px" id="0">-->
+          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-min"  style="width:300px" id="0">
+
+          <!--<p>{{item.event_name}}</p>-->
+        <!--</div>-->
+        </li>
+        {% endfor %}
+      </ul>
+
+      <ul id="menu">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>PHP</li>
+      </ul>
+
+      <ul id="menu">
+        <li><div style='float:left'>HTML</div></li>
+          <li><div style='float:right'>CSS</div></li>
+          <li><div>JavaScript</div></li>
+          <li><div>PHP</div></li>
+      </ul>
+
+
+      <ul id="menu">
+          <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
+</li>
+          <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
+</li>
+          <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
+</li>
+          <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
+</li>
+      </ul>
+
+    </div>
+
+      <!--<table class="table">-->
+        <!--<thead>-->
+          <!--<tr>-->
+            <!--<th>Event Name</th>-->
+            <!--<th>Time Stamp</th>-->
+          <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+          <!--{% for event in data %}-->
+            <!--<tr>-->
+              <!--<td>{{ event.event_name }}</td>-->
+              <!--<td>{{ event.time_stamp }}</td>-->
+            <!--</tr>-->
+          <!--{% endfor %}-->
+        <!--</tbody>-->
+      <!--</table>-->
     </div>
     {% endblock %}
   </body>

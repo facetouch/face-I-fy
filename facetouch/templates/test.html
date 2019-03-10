@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container">
+  <h2>Opacity Effect</h2>
+  <p>The w3-opacity classes add a transparency effect to an element.</p>
+
+  <p>Normal:</p>
+  <button onclick="myFunction()">Try it</button>
+
+  <script>
+    var i=0;
+    function myFunction() {
+      if(i!=0)document.getElementById(""+i-1).setAttribute("class", "w3-opacity-max");
+      document.getElementById(""+i).setAttribute("class", "w3-opacity-min");
+      i++;
+    }
+
+
+  </script>
+  <style>
+    ul#menu li {
+    display:inline;
+      }
+</style>
+  {% for item in data %}
+    <div>
+      <img src={{item.image_url}} class="w3-opacity-max"  style="width:300px" id="0"><p>
+      <p>{{item.name}}
+    </div>
+  {% endfor %}
+  <img src="https://i2.wp.com/www.fatosmorina.com/wp-content/uploads/2018/11/hello-world.png?ssl=1" class="w3-opacity-max" style="width:300px" id="1">
+  <p>w3-opacity:</p>
+  <img src="https://i2.wp.com/www.fatosmorina.com/wp-content/uploads/2018/11/hello-world.png?ssl=1" class="w3-opacity-max" style="width:300px" id="2">
+  <p>w3-opacity-max:</p>
+  <img src="https://i2.wp.com/www.fatosmorina.com/wp-content/uploads/2018/11/hello-world.png?ssl=1" class="w3-opacity-max" style="width:300px" id="3">
+
+  <ul id="menu">
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>PHP</li>
+  </ul>
+
+  <div class="w3-panel w3-red w3-opacity">
+    <p>Red with opacity</p>
+  </div>
+  <div class="w3-panel w3-blue w3-opacity">
+    <p>Blue with opacity</p>
+  </div>
+  <div class="w3-panel w3-green w3-opacity">
+    <p>Green with opacity</p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -43,3 +43,6 @@ class EventsPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = {'data': Event.objects.all()}
         return render(request, 'show_events.html', context)
+
+# class MyPageViewTest(TemplateView):
+#     def get(self,request,)
