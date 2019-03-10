@@ -10,6 +10,13 @@ ul#menu li {
 ul#menu div {
   display:inline;
 }
+
+.division{
+      display:inline;
+      <!--width="25%";-->
+      <!--height="300px";-->
+      <!--border: 2px solid #000000;-->
+      }
 </style>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -20,6 +27,36 @@ ul#menu div {
     <title></title>
   </head>
   <body>
+
+      <button onclick="myFunction()">Right Scroll</button>
+
+      <button onclick="left()">Left Scroll</button>
+
+      <p id="daredevil">welcome to the jungle</p>
+
+  <script>
+    var i=0;
+    var list = [];
+    {% for item in data %}
+      list.push({{item.pk}});
+    {% endfor %}
+    function myFunction() {
+      <!--document.getElementById("daredevil").innerHTML=list;-->
+      if(i!=0)document.getElementById(""+list[i-1]).setAttribute("class", "w3-opacity-max");
+      document.getElementById(""+list[i]).setAttribute("class", "w3-opacity-min");
+      i++;
+    }
+
+    function left() {
+      <!--document.getElementById("daredevil").innerHTML=list;-->
+      if(i!=0)document.getElementById(""+list[i-1]).setAttribute("class", "w3-opacity-max");
+      document.getElementById(""+list[i-2]).setAttribute("class", "w3-opacity-min");
+      i--;
+    }
+
+
+  </script>
+
     {% block pagecontent %}
     <div class="table-div">
     <!-- We will display our data in a normal HTML table using Django's
@@ -28,13 +65,17 @@ ul#menu div {
       <ul id="menu">
         {% for item in data %}
         <li>
-        <!--<div>-->
+        <div class="division">
           <!--<img src={{item.image_url}} class="w3-opacity-max"  style="width:300px" id="0">-->
-          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-min"  style="width:300px" id="0">
-
+          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:20%" style="height:20%" id={{item.pk}}>
+          <!--<p align="center" style="display: inline;">hello</p>-->
           <!--<p>{{item.event_name}}</p>-->
-        <!--</div>-->
+        </div>
+
+
+          <!--hello-->
         </li>
+
         {% endfor %}
       </ul>
 
@@ -54,7 +95,7 @@ ul#menu div {
 
 
       <ul id="menu">
-          <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
+          <li>          c
 </li>
           <li>          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0">
 </li>
@@ -66,6 +107,10 @@ ul#menu div {
 
     </div>
 
+
+
+    <div id="firstDivistion" class="division"><img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0"></div>
+    <div id="secondDivistion" class="division"><img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:300px" id="0"></div>
       <!--<table class="table">-->
         <!--<thead>-->
           <!--<tr>-->
