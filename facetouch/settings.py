@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'facetouch'
+    # 'channels',
+    'facetouch',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'facetouch.wsgi.application'
+ASGI_APPLICATION = 'facetouch.asgi.application'
 
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "asgiref.inmemory.ChannelLayer",
+#         "ROUTING": "facetouch.routing.channel_routing",
+#     },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -129,3 +137,12 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'facetouch.routing.channel_routing',
+    }
+}
