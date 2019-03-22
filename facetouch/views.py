@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
-from facetouch.models import Event, Section, Item
+from facetouch.models import Event, Section, Item, Image
 from datetime import datetime
 from django.views.generic import TemplateView
 
@@ -54,14 +54,16 @@ class SectionalDetailsView(TemplateView):
             section_details.append(section_detail)
         return JsonResponse({'sections': section_details})
 
-
 class ItemDetailsView(TemplateView):
     def get(self, request, *args, **kwargs):
         section_id = self.kwargs['section_id']
-        section = Section.objects.get(pk=section_id)
-        import pdb;
-        pdb.set_trace()
-        section_items = section.items.all()
-        context = {'data': section_items}
-
-        return render(request, 'show_items.html', context)
+        items = Item.objects.filter(section=section_id)
+        # section_items = section.items.all()
+        # context = {'data': items}
+        item_details = []
+        for item in items:
+            item_detail = {'name': item.pk, 'name': item.name, 'description': item.description, 'price': item.price,'image': item.image.url}
+            item_details.append(item_detail)
+            # import pdb;pdb.set_trace()
+        return JsonResponse({'items': item_details})
+        # return render(request, 'show_items.html', context)
