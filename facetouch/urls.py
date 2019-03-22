@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^events/$', EventsPageView.as_view(), name='events'),  # Add this URL pattern
 
+
 ]

@@ -46,3 +46,14 @@ class EventsPageView(TemplateView):
 
 # class MyPageViewTest(TemplateView):
 #     def get(self,request,)
+
+class SectionalDetailsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        context = {'data': Sections.objects.all()}
+        return render(request, 'show_events.html', context)
+
+class ItemDetailsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        item_id = self.kwargs['itemId']
+        context = {'data': Items.objects.get(pk=item_id)}
+        return render(request, 'show_events.html', context)

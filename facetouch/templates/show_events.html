@@ -28,13 +28,26 @@ ul#menu div {
   </head>
   <body>
 
-      <button onclick="myFunction()">Right Scroll</button>
+      <h1 align="center">FaceTouch.com Test API</h1>
+
+
+        <div align="center">
+            <p id="event_name">Event Name: </p>
+            <p id="timestamp">Timestamp: </p>
+        </div>
+
+        <button onclick="myFunction()">Right Scroll</button>
 
       <button onclick="left()">Left Scroll</button>
 
-      <p id="daredevil">welcome to the jungle</p>
+      <!--<p id="daredevil">welcome to the jungle</p>-->
+
+
 
   <script>
+
+
+
     var i=0;
     var list = [];
     {% for item in data %}
@@ -54,7 +67,44 @@ ul#menu div {
       i--;
     }
 
+    function down() {
+      <!--document.getElementById("daredevil").innerHTML=list;-->
+      if(i!=0)document.getElementById(""+list[i-1]).setAttribute("class", "w3-opacity-max");
+      document.getElementById(""+list[i-2]).setAttribute("class", "w3-opacity-min");
+      i--;
+    }
 
+    var duration = 500000000000,
+     interval = 1000,
+     intervalTimer;
+     intervalTimer = setInterval(function() {
+         loadDoc();
+     }, interval);
+     setTimeout(function() {
+         clearInterval(intervalTimer);
+     }, duration);
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var responseObj = JSON.parse(this.responseText);
+    if(!("event_name" in responseObj)){
+    document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;
+    document.getElementById("timestamp").innerHTML = "";
+    }
+    else{
+
+        if(responseObj.event_name.includes("right"))myFunction();
+        if(responseObj.event_name.includes("left"))left();
+        document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;
+        document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;
+    }
+    }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
+  xhttp.send();
+}
   </script>
 
     {% block pagecontent %}
