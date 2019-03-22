@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
-from facetouch.models import Event
+from facetouch.models import Event, Section, Item
 from datetime import datetime
 from django.views.generic import TemplateView
 
@@ -43,3 +43,25 @@ class EventsPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = {'data': Event.objects.all()}
         return render(request, 'show_events.html', context)
+
+
+class SectionalDetailsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        sections = Section.objects.all()
+        section_details = []
+        for section in sections:
+            section_detail = {'id': section.pk, 'name': section.name}
+            section_details.append(section_detail)
+        return JsonResponse({'sections': section_details})
+
+
+class ItemDetailsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        section_id = self.kwargs['section_id']
+        section = Section.objects.get(pk=section_id)
+        import pdb;
+        pdb.set_trace()
+        section_items = section.items.all()
+        context = {'data': section_items}
+
+        return render(request, 'show_items.html', context)
