@@ -1,0 +1,110 @@
+<!-- djangotemplates/example/templates/data.html -->
+
+<!--{#{% extends 'base.html' %}#}-->
+<link type="text/css" rel="stylesheet" href="/static/css/lightslider.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/static/js/lightslider.js"></script>
+<!DOCTYPE html>
+<style>
+    	ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+        .demo .item{
+            margin-bottom: 60px;
+        }
+		.content-slider li{
+		    background-color: bisque;
+		    text-align: center;
+		    color: #FFF;
+		}
+		.content-slider h3 {
+		    margin: 0;
+		    padding: 70px 0;
+		}
+		.demo{
+			width: 90%;
+            horiz-align: center;
+            border: 3px solid;
+		}
+ul {
+    white-space: nowrap;
+    overflow: scroll;
+}
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <button onclick="right()">Right Scroll</button>
+      <button onclick="left()">Left Scroll</button>
+  <script>
+  var slider;
+  $(document).ready(function() {
+    slider = $("#lightSlider").lightSlider({
+         loop:true,
+         keyPress:true
+    });
+    document.getElementById(1).setAttribute("class", "w3-opacity-min");
+  });
+    var currentIndex = 0;
+    var list = [];
+    {% for item in data %}
+      list.push({{item.pk}});
+    {% endfor %}
+
+
+    function right() {
+        slider.goToNextSlide()
+        moveToNext(1)
+    }
+    function moveToNext(direction){
+        const current = document.getElementById(list[currentIndex]);
+        current.setAttribute("class", "w3-opacity-max");
+        let nextIndex;
+        console.log("dir" + direction)
+        console.log("curr" + currentIndex)
+        if(currentIndex==list.length-1 && direction == 1){
+            nextIndex = 0;
+        }
+        else if(currentIndex == 0 && direction == -1){
+            nextIndex = list.length - 1;
+        }
+        else{
+            nextIndex = currentIndex + direction;
+        }
+        console.log("next" + nextIndex)
+        const nextItem = document.getElementById(list[nextIndex]);
+        nextItem.setAttribute("class", "w3-opacity-min");
+        currentIndex = nextIndex;
+    }
+
+    function left() {
+        slider.goToPrevSlide()
+        moveToNext(-1)
+    }
+  </script>
+
+    {% block pagecontent %}
+    <div class="demo">
+      <ul id="lightSlider" class="content-slider">
+        {% for item in data %}
+        <li>
+        <div class="item">
+          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:80%" style="height:80%" id={{item.pk}}>
+            <p>{{ item.event_name }}</p>
+        </div>
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+    {% endblock %}
+  </body>
+</html>

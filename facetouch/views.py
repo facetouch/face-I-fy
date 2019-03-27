@@ -42,7 +42,7 @@ class HomePageView(TemplateView):
 class EventsPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = {'data': Event.objects.all()}
-        return render(request, 'show_events.html', context)
+        return render(request, 'home.html', context)
 
 
 class SectionalDetailsView(TemplateView):
@@ -52,17 +52,18 @@ class SectionalDetailsView(TemplateView):
         for section in sections:
             section_detail = {'id': section.pk, 'name': section.name}
             section_details.append(section_detail)
-        return JsonResponse({'sections': section_details})
+        context = {'data': section_details}
+        return render(request, 'home.html', context)
+
 
 class ItemDetailsView(TemplateView):
     def get(self, request, *args, **kwargs):
         section_id = self.kwargs['section_id']
         items = Item.objects.filter(section=section_id)
-        # section_items = section.items.all()
-        # context = {'data': items}
         item_details = []
         for item in items:
-            item_detail = {'name': item.pk, 'name': item.name, 'description': item.description, 'price': item.price,'image': item.image.url}
+            item_detail = {'name': item.pk, 'name': item.name, 'description': item.description, 'price': item.price,
+                           'image': item.image.url}
             item_details.append(item_detail)
             # import pdb;pdb.set_trace()
         return JsonResponse({'items': item_details})
