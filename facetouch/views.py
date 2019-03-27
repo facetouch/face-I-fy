@@ -42,7 +42,7 @@ class HomePageView(TemplateView):
 class EventsPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = {'data': Event.objects.all()}
-        return render(request, 'home.html', context)
+        return render(request, 'index.html', context)
 
 
 class SectionalDetailsView(TemplateView):
@@ -52,8 +52,9 @@ class SectionalDetailsView(TemplateView):
         for section in sections:
             section_detail = {'id': section.pk, 'name': section.name}
             section_details.append(section_detail)
-        context = {'data': section_details}
-        return render(request, 'home.html', context)
+        return JsonResponse({'section': section_details})
+        # context = {'data': section_details}
+        # return render(request, 'home.html', context)
 
 
 class ItemDetailsView(TemplateView):
@@ -61,10 +62,26 @@ class ItemDetailsView(TemplateView):
         section_id = self.kwargs['section_id']
         items = Item.objects.filter(section=section_id)
         item_details = []
+        # return render(request, 'show_items.html', context)
         for item in items:
             item_detail = {'name': item.pk, 'name': item.name, 'description': item.description, 'price': item.price,
                            'image': item.image.url}
             item_details.append(item_detail)
-            # import pdb;pdb.set_trace()
         return JsonResponse({'items': item_details})
-        # return render(request, 'show_items.html', context)
+
+
+class SectionItemsView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        sections = Section.objects.all()
+        section_details = []
+        for section in sections:
+            items = Item.objects.filter(section=section.pk)
+            item_details = []
+            for item in items:
+                item_detail = {'id': item.pk, 'name': item.name, 'description': item.description, 'price': item.price,
+                               'image': item.image.url}
+                item_details.append(item_detail)
+            section_detail = {'id': section.pk, 'name': section.name, 'items': item_details}
+            section_details.append(section_detail)
+        context = {'sections': section_details}
+        return render(request, 'home.html', context)
