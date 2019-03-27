@@ -47,11 +47,13 @@ ul {
   <script>
   var slider;
   $(document).ready(function() {
-    slider = $("#lightSlider").lightSlider({
-         loop:true,
-         keyPress:true
-    });
-    document.getElementById(1).setAttribute("class", "w3-opacity-min");
+    {% for section in sections %}
+      slider = $("#lightSlider_{{ section.id }}").lightSlider({
+           loop:true,
+           keyPress:true
+      });
+      document.getElementById(1).setAttribute("class", "w3-opacity-min");
+    {% endfor %}
   });
     var currentIndex = 0;
     var list = [];
@@ -92,19 +94,24 @@ ul {
   </script>
 
     {% block pagecontent %}
-    <div class="demo">
-      <ul id="lightSlider" class="content-slider">
-        {% for item in data %}
-        <li>
-        <div class="item">
-          <img src="https://static.amazon.jobs/locations/49/thumbnails/SF_Bay_Area_Thumbnail-01.jpg?1489696413" class="w3-opacity-max"  style="width:80%" style="height:80%" id={{item.pk}}>
-            <p>{{ item.event_name }}</p>
-        </div>
-        </li>
+      <div class="container">
+        {% for section in sections %}
+        <h1>{{ section.name }}</h1>
+        <div class="demo">
+          <ul id="lightSlider_{{ section.id }}" class="content-slider">
+            {% for item in section.items %}
+            <li>
+            <div class="item">
+              <img src="{{ item.image }}" class="w3-opacity-max"  style="width:80%" style="height:80%" id={{ item.id }}>
+                <p>{{ item.name }}</p>
+            </div>
+            </li>
 
+            {% endfor %}
+          </ul>
+        </div>
         {% endfor %}
-      </ul>
-    </div>
-    {% endblock %}
+      </div>
+  {% endblock %}
   </body>
 </html>

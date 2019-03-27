@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from facetouch.views import create_event, EventsPageView, ItemDetailsView, SectionalDetailsView
+from facetouch.views import create_event, EventsPageView, ItemDetailsView, SectionalDetailsView, SectionItemsView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^event/create', create_event),
-    url(r'^$', SectionalDetailsView.as_view(), name='all_sections'),
+    url(r'^$', SectionItemsView.as_view(), name='all_sections'),
     url(r'^events/$', EventsPageView.as_view(), name='events'),  # Add this URL pattern
     url(r'^section/$', SectionalDetailsView.as_view(), name='sections'),
+    url(r'^sectionsItems/$', SectionItemsView.as_view(), name='sections'),
     url(r'^section/(?P<section_id>\d+)/items/$', ItemDetailsView.as_view(), name='items'),
 ]
