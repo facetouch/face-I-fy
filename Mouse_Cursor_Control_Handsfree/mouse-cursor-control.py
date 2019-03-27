@@ -8,11 +8,12 @@ import cv2
 import json
 import requests
 
+
 URL = "http://127.0.0.1:8000"
 
 
 def send_event(event_name):
-    print event_name
+    print(event_name)
     action_details = {"event_name": event_name}
     request = requests.post(URL + '/event/create', data=json.dumps(action_details))
     if request.status_code != 200:
@@ -48,7 +49,10 @@ BLACK_COLOR = (0, 0, 0)
 
 # Initialize Dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
-shape_predictor = "/Users/anip/Develop/facetouch/Mouse_Cursor_Control_Handsfree/model/shape_predictor_68_face_landmarks.dat"
+
+shape_predictor = "static/model/shape_predictor_68_face_landmarks.dat"
+
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(shape_predictor)
 
@@ -129,13 +133,13 @@ while True:
 
     # Check to see if the eye aspect ratio is below the blink
     # threshold, and if so, increment the blink frame counter
-    print "diff_ear{}".format(diff_ear)
+    print("diff_ear{}".format(diff_ear))
     if diff_ear > WINK_AR_DIFF_THRESH:
         # import pdb;pdb.set_trace()
         if leftEAR < rightEAR:
             if leftEAR < EYE_AR_THRESH:
                 WINK_COUNTER += 1
-                print "WINK_COUNTER-{}".format(WINK_COUNTER)
+                print("WINK_COUNTER-{}".format(WINK_COUNTER))
 
                 if WINK_COUNTER > WINK_CONSECUTIVE_FRAMES:
                     # import pdb;
@@ -179,7 +183,7 @@ while True:
 
     if mar > MOUTH_AR_THRESH:
         MOUTH_COUNTER += 1
-        print MOUTH_COUNTER
+        print(MOUTH_COUNTER)
 
         if MOUTH_COUNTER >= MOUTH_AR_CONSECUTIVE_FRAMES:
             send_event("mouth_movement")
