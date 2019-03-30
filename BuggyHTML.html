@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>lightSlider Demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <link rel="stylesheet"  href="https://rawcdn.githack.com/sachinchoolur/lightslider/aa6c01e1e0fbf180eed67447471dfc24d29a3ae1/src/css/lightslider.css"/>
+    <style>
+    	ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+        .demo {
+            margin: auto;
+            width: 60%;
+        }
+
+        .item{
+            margin-bottom: 60px;
+            /*background-color: #64f4aa;*/
+
+        }
+
+        .itemBold{
+            margin-bottom: 60px;
+            background-color: #b6b7ba;
+
+        }
+
+		.content-slider li{
+		    /*background-color: #64f4aa;*/
+		    text-align: center;
+		    color: #FFF;
+		}
+
+        .borderImg{
+          border: 5px solid red;
+        }
+		.content-slider h3 {
+		    margin: 0;
+		    padding: 70px 0;
+		}
+		.demo{
+			width: 600px;
+		}
+
+        .centered-and-cropped { 
+            object-fit: cover 
+        }
+
+        .centered-and-cropped-Border { 
+            object-fit: cover;
+            border: 5px solid black;
+            }
+
+        img.resize {
+          width:190px;
+          height:190px;
+          object-fit: cover;
+        }
+
+        img.resizeBold {
+          width:190px;
+          height:190px;
+          object-fit: cover;
+          border: 5px solid black;
+
+        }
+
+        .borderlist 
+        {
+            /*border-left: 5px solid black;*/
+            /*border-bottom: 5px solid black;*/
+            border: 5px solid black;
+            
+        }
+
+        .borderlist2 
+        {
+            /*border-left: 5px solid black;*/
+            /*border-bottom: 5px solid black;*/
+            border: 5px solid transparent;
+            
+        }     
+
+
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://rawcdn.githack.com/sachinchoolur/lightslider/aa6c01e1e0fbf180eed67447471dfc24d29a3ae1/src/js/lightslider.js"></script> 
+    <script>
+    	 
+    </script>
+</head>
+<body>
+	<div class="demo">
+        
+        <div class="itemBold" id="div-content-slider1">
+            <ul id="content-slider1" class="content-slider">
+                <li id="li00"class="borderlist2">
+                    <img id="img00" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-1.jpg" />
+                    item1
+                </li>
+                <li id="li01"class="borderlist2">
+                    <img id="img01" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-2.jpg" />
+                    item2
+                </li>
+                <li id="li02"class="borderlist2">
+                    <img id="img02" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-3.jpg" />
+                </li>
+                <li id="li03"class="borderlist2">
+                    <img id="img03" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-4.jpg" />
+                </li>
+                <li id="li04"class="borderlist2">
+                    <img id="img04" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-5.jpg" />
+                </li>
+                <li id="li05"class="borderlist2">
+                    <img id="img05" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-6.jpg" />
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="item" id="div-content-slider2">
+
+            <ul id="content-slider2" class="content-slider">
+                <li id="li10"class="borderlist2">
+                    <img id="img10" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-1.jpg" />
+                </li>
+                <li id="li11"class="borderlist2">
+                    <img id="img11" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-2.jpg" />
+                </li>
+                <li id="li12"class="borderlist2">
+                    <img id="img12" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-3.jpg" />
+                </li>
+                <li id="li13"class="borderlist2">
+                    <img id="img13" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-4.jpg" />
+                </li>
+                <li id="li14"class="borderlist2">
+                    <img id="img14" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-5.jpg" />
+                </li>
+                <li id="li15"class="borderlist2">
+                    <img id="img15" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-6.jpg" />
+                </li>
+            </ul>
+
+
+        </div>
+
+        <div class="item" id="div-content-slider3">
+
+            <ul id="content-slider3" class="content-slider">
+                <li id="li20"class="borderlist2">
+                    <img id="img20" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-1.jpg" />
+                </li>
+                <li id="li21"class="borderlist2">
+                    <img id="img21" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-2.jpg" />
+                </li>
+                <li id="li22"class="borderlist2">
+                    <img id="img22" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-3.jpg" />
+                </li>
+                <li id="li23"class="borderlist2">
+                    <img id="img23" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-4.jpg" />
+                </li>
+                <li id="li24"class="borderlist2">
+                    <img id="img24" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-5.jpg" />
+                </li>
+                <li id="li25"class="borderlist2">
+                    <img id="img25" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-6.jpg" />
+                </li>
+            </ul>
+
+
+        </div>
+
+        <div class="item" id="div-content-slider4">
+
+            <ul id="content-slider4" class="content-slider">
+                <li id="li30"class="borderlist2">
+                    <img id="img30" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-1.jpg" />
+                </li>
+                <li id="li31"class="borderlist2">
+                    <img id="img31" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-2.jpg" />
+                </li>
+                <li id="li32"class="borderlist2">
+                    <img id="img32" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-3.jpg" />
+                </li>
+                <li id="li33"class="borderlist2">
+                    <img id="img33" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-4.jpg" />
+                </li>
+                <li id="li34"class="borderlist2">
+                    <img id="img34" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-5.jpg" />
+                </li>
+                <li id="li35"class="borderlist2">
+                    <img id="img35" class="resize" src="https://github.com/sachinchoolur/lightslider/raw/master/demo/img/cS-6.jpg" />
+                </li>
+            </ul>
+        
+        </div>
+
+    </div>
+
+    <button onclick="move_right()">Move Right</button>
+    <button onclick="move_left()">Move Left</button>
+    <button onclick="get_curr()">Get Curr</button>
+    <button onclick="goTo()">Go To</button>
+    <button onclick="goToNextRow()">Go To Next Row</button>
+    <button onclick="goToPrevRow()">Go To Prev Row</button>
+
+
+
+        <p id="demoXYZ"></p>
+
+        <script>
+            $(document).ready(function() {
+                slider1 = $("#content-slider1").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+
+                slider2 = $("#content-slider2").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+
+                slider3 = $("#content-slider3").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+
+                slider4 = $("#content-slider4").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+
+                slider = new Array(slider1, slider2, slider3,slider4);
+                ListDiv = new Array("div-content-slider1","div-content-slider2","div-content-slider3","div-content-slider4");
+                
+            
+        });
+
+            var i = 0;
+            var maxI = 3;
+            var maxSlides = 6;
+            var liID = new Array(maxI);
+            //Creating li ID Array
+            for (var k1 = 0; k1 <= maxI; k1++) {
+              liID[k1] = new Array(maxSlides);
+            }
+
+            for (var k2 = 0; k2 <= maxI; k2++) {
+              for(var k3 = 0; k3<maxSlides;k3++){
+                    liID[k2][k3] = "li"+""+(k2)+""+(k3);
+              }
+            }
+
+            // document.getElementById("demoXYZ").innerHTML = x;
+
+        function move_right() {
+           curSlide1 = slider[i].getCurrentSlideCount();
+          document.getElementById(liID[i][curSlide1-1]).className="borderlist2";
+          slider[i].goToNextSlide();
+           curSlide2 = slider[i].getCurrentSlideCount();
+          document.getElementById(liID[i][curSlide2-1]).className="borderlist";
+          document.getElementById("demoXYZ").innerHTML = curSlide2-1;
+        }
+
+        function move_left() {
+           curSlide3 = slider[i].getCurrentSlideCount();
+          document.getElementById(liID[i][curSlide3-1]).className="borderlist2";
+          slider[i].goToPrevSlide();
+           curSlide4 = slider[i].getCurrentSlideCount();
+          document.getElementById(liID[i][curSlide4-1]).className="borderlist";
+          document.getElementById("demoXYZ").innerHTML = curSlide4-1;
+        }
+
+        
+
+        function get_curr() {
+          document.getElementById("demoXYZ").innerHTML = liID[3][4];
+        }
+
+        function goTo(){
+            document.getElementById(liID[3][4]).setAttribute('class', 'resizeBold');
+        }
+
+        function goToNextRow(){
+            i++;
+            if(i>maxI)i=maxI;
+            document.getElementById(ListDiv[i-1]).className = "item";
+            document.getElementById(ListDiv[i]).className = "itemBold";
+            $('html, body').animate({
+                scrollTop: $("#"+ListDiv[i]).offset().top
+            }, 1000);
+        }
+
+        function goToPrevRow(){
+            i--;
+            if(i<0)i=0;
+            document.getElementById(ListDiv[i+1]).className = "item";
+            document.getElementById(ListDiv[i]).className = "itemBold";
+            $('html, body').animate({
+                scrollTop: $("#"+ListDiv[i]).offset().top
+            }, 1000);
+        }
+
+        </script>	
+</body>
