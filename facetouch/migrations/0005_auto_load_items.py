@@ -11,6 +11,114 @@ items = [
      'image_url': 'https://deliciouslysprinkled.com/wp-content/uploads/2018/05/Easy-Pineapple-Rum-Punch-Recipe-4.jpg',
      'section': 'Beverages',
      },
+    {
+     'name': 'Pina Colada',
+     'description': 'None',
+     'price': 5.8,
+     'image_url': 'https://www.myboomernutrition.com/wp-content/uploads/2018/06/Pina-Colada-Vegan-Protein-Smoothie.jpg',
+     'section': 'Beverages'
+    },
+    {
+     'name': 'Ombre Grapefruit Cocktail',
+     'description': 'None',
+     'price': 6.5,
+     'image_url': 'http://www.leseclaireuses.com/ec_content/20160523-8.jpg',
+     'section': 'Beverages'
+    },
+    {
+     'name': 'Blue Curacao Rum',
+     'description': 'None',
+     'price': 4.9,
+     'image_url': 'https://i.pinimg.com/736x/71/c6/9d/71c69d55e7b729aa231519df103408bc--blue-and-fun-drinks.jpg',
+     'section': 'Beverages'
+    },
+    {
+     'name': 'Mojito',
+     'description': 'None',
+     'price': 5.9,
+     'image_url': 'https://d1jhh0buemfyuj.cloudfront.net/files/sites/126/2018/01/mojito.jpg',
+     'section': 'Beverages'
+    },
+    {
+     'name': 'Strawberry Pretzel Dessert',
+     'description': 'None',
+     'price': 9.9,
+     'image_url': 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Strawberry-Pretzel-Dessert_EXPS_CPBZ19_4444_E11_02_3b.jpg',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'Moist Chocolate Cake',
+     'description': 'None',
+     'price': 8.5,
+     'image_url': 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Moist-Chocolate-Cake_EXPS_GHBZ18_1693_E08_08_10b.jpg',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'Lemon Pudding',
+     'description': 'None',
+     'price': 7.5,
+     'image_url': 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Lemon-Pudding-Dessert_EXPS_THAM17_12018_D11_10_2b-1-696x696.jpg',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'Tiramisu',
+     'description': 'None',
+     'price': 8.8,
+     'image_url': 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/2/4/2/RX-FNM_030111-Sugar-Fix-005_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371597326801.jpeg',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'Butter Cake Ice-Cream',
+     'description': 'None',
+     'price': 9.7,
+     'image_url': 'http://storage.googleapis.com/zagat-article-ss/philly-twentymanning-danyahenninger-tollhouse2.jpg?h=646&w=646&auto=format',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'Nutella Chocolate Drink',
+     'description': 'None',
+     'price': 5.7,
+     'image_url': 'https://dessertswithbenefits.com/wp-content/uploads/2014/11/Healthy-Nutella-Hot-Chocolate-280x355.jpg',
+     'section': 'Desserts'
+    },
+    {
+     'name': 'French Beef Sandwich',
+     'description': 'None',
+     'price': 3.7,
+     'image_url': 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/10/8/0/VB0406H_French-Beef-Sandwich_s4x3.jpg.rend.hgtvcom.616.462.suffix/1476129657486.jpeg',
+     'section': 'Main Course'
+    },
+    {
+     'name': 'Chicken Salad Sandwich',
+     'description': 'None',
+     'price': 9.7,
+     'image_url': 'https://hips.hearstapps.com/del.h-cdn.co/assets/17/32/1502305153-chicken-salad-sandwich-delish-1.jpg',
+     'section': 'Main Course'
+    },
+    {
+     'name': 'Lasagna',
+     'description': 'None',
+     'price': 9.3,
+     'image_url': 'https://cafedelites.com/wp-content/uploads/2018/01/Mamas-Best-Lasagna-IMAGE-43.jpg',
+     'section': 'Main Course'
+    },
+    {
+     'name': 'Burrito',
+     'description': 'None',
+     'price': 10.7,
+     'image_url': 'https://images-gmi-pmc.edge-generalmills.com/948a8b21-aa8a-443a-ba16-93cb234f4611.jpg',
+     'section': 'Main Course'
+    },
+    {
+     'name': 'Thai Noodles',
+     'description': 'None',
+     'price': 11.7,
+     'image_url': 'https://ohsweetbasil.com/wp-content/uploads/Thai-peanut-sauce-noodles-and-chicken-ohsweetbasil.com_.jpg',
+     'section': 'Main Course'
+    },
+
+
+
 ]
 
 
