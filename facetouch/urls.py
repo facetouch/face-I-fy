@@ -21,7 +21,7 @@ from facetouch.views import create_event, EventsPageView, ItemDetailsView, Secti
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^event/create', create_event),
-    url(r'^$', SectionItemsView.as_view(), name='all_sections'),
+    # url(r'^$', SectionItemsView.as_view(), name='all_sections'),
     url(r'^events/$', EventsPageView.as_view(), name='events'),  # Add this URL pattern
     url(r'^section/$', SectionalDetailsView.as_view(), name='sections'),
     url(r'^sectionsItems/$', SectionItemsView.as_view(), name='sections'),

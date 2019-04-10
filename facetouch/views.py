@@ -84,4 +84,4 @@ class SectionItemsView(TemplateView):
             section_detail = {'id': section.pk, 'name': section.name, 'items': item_details}
             section_details.append(section_detail)
         context = {'sections': section_details}
-        return render(request, 'home.html', context)
+        return render(request, 'landingPage.html', context)
