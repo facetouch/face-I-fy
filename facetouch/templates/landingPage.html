@@ -53,7 +53,6 @@
             <div class="itemBold" id="div-content-slider{{ section.id }}">
                 <ul id="content-slider{{ section.id }}" class="content-slider">
                     {% for item in section.items %}
-
                     <li>
                         <!--<h3>{{ item.name }}</h3>-->
                         <img class="centered-and-cropped" width="200" height="200" src="{{ item.image }}" />
@@ -66,8 +65,6 @@
 {% endblock %}
     <button onclick="move_right()">Move Right</button>
     <button onclick="move_left()">Move Left</button>
-    <!-- <button onclick="get_curr()">Get Curr</button>
-    <button onclick="goTo()">Go To</button> -->
     <button onclick="goToNextRow()">Go To Next Row</button>
     <button onclick="goToPrevRow()">Go To Prev Row</button>
 
@@ -76,50 +73,47 @@
         <p id="demoXYZ"></p>
 
         <script>
-
+            slider_objs = []
+            slider_divs_ids = []
             $(document).ready(function() {
             {% for section in sections %}
-                slider{{ section.id }} = $("#content-slider{{ section.id }}").lightSlider({
+                div_id = "content-slider"
+                slider = $("#" + div_id + "{{ section.id }}").lightSlider({
                 loop:true,
                 keyPress:true
             });
+                slider_objs.push(slider)
+                slider_divs_ids.push(div_id + "{{ section.id }}")
             {% endfor %}
-                slider = new Array(slider1, slider2, slider3,slider4);
-                ListDiv = new Array("div-content-slider1","div-content-slider2","div-content-slider3","div-content-slider4");
-
         });
-            var i = 0;
-            var maxI = 3;
-        function move_right() {
-          slider[i].goToNextSlide();
-        }
-        function move_left() {
-          slider[i].goToPrevSlide();
-        }
+            let index = 0;
+            let maxSections = slider_objs.length - 1;
+            function move_right() {
+                slider_objs[index].goToNextSlide();
+            }
+            function move_left() {
+                slider_objs[index].goToPrevSlide();
+            }
 
-        // function get_curr() {
-        //   document.getElementById("demoXYZ").innerHTML = slider[i].getCurrentSlideCount();
-        // }
-        // function goTo(){
-        //     slider[i].goToSlide(3);
-        // }
-        function goToNextRow(){
-            i++;
-            if(i>maxI)i=maxI;
-            document.getElementById(ListDiv[i-1]).className = "item";
-            document.getElementById(ListDiv[i]).className = "itemBold";
-            $('html, body').animate({
-                scrollTop: $("#"+ListDiv[i]).offset().top
-            }, 1000);
-        }
-        function goToPrevRow(){
-            i--;
-            if(i<0)i=0;
-            document.getElementById(ListDiv[i+1]).className = "item";
-            document.getElementById(ListDiv[i]).className = "itemBold";
-            $('html, body').animate({
-                scrollTop: $("#"+ListDiv[i]).offset().top
-            }, 1000);
-        }
+            function goToNextRow(){
+                index++;
+                if(index>maxSections)
+                    return;
+                document.getElementById(slider_divs_ids[index-1]).className = "item";
+                document.getElementById(slider_divs_ids[index]).className = "itemBold";
+                $('html, body').animate({
+                    scrollTop: $("#"+slider_divs_ids[index]).offset().top
+                }, 1000);
+            }
+            function goToPrevRow(){
+                index--;
+                if(index<0)
+                    return;
+                document.getElementById(slider_divs_ids[index+1]).className = "item";
+                document.getElementById(slider_divs_ids[index]).className = "itemBold";
+                $('html, body').animate({
+                    scrollTop: $("#"+slider_divs_ids[index]).offset().top
+                }, 1000);
+            }
         </script>
 </body>
