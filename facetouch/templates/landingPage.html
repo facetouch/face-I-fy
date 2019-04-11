@@ -7,10 +7,23 @@
     <meta name="description" content="">
     <link rel="stylesheet"  href="/static/css/lightslider.css"/>
     <style>
+        h1{
+            text-shadow: 3px 2px 5px;
+            color: #d5947e;
+            font-size: 50px;
+
+        }
+        body {
+         background-image: url("/static/images/background.jpg");
+        }
     	ul{
 			list-style: none outside none;
 		    padding-left: 0;
             margin: 0;
+            border-style: dotted;
+            border-width: 5px;
+            border-color: #d5947e ;
+
 		}
         .demo {
             margin: auto;
@@ -20,9 +33,13 @@
             margin-bottom: 60px;
             /*background-color: #64f4aa;*/
         }
+        h2{
+            color: white;
+        }
         .itemBold{
             margin-bottom: 60px;
-            background-color: #b6b7ba;
+            <!--background-color: #b6b7ba;-->
+            <!--padding: 70px 0;-->
         }
 		.content-slider li{
 		    /*background-color: #64f4aa;*/
@@ -46,6 +63,7 @@
 </head>
 <body>
 
+<h1 align="center">FaceTouch</h1>
 {% block pagecontent %}
 	<div class="demo">
         {% for section in sections %}
@@ -56,6 +74,8 @@
                     <li id="item{{ item.id }}">
                         <!--<h3>{{ item.name }}</h3>-->
                         <img class="centered-and-cropped" width="200" height="200" src="{{ item.image }}" />
+                        <p> {{ item.name }} </p>
+                        <p> $   {{ item.price }} </p>
                     </li>
                     {% endfor %}
                 </ul>
@@ -169,17 +189,16 @@
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             var responseObj = JSON.parse(this.responseText);
+            console.log(this.responseText);
             if(!("event_name" in responseObj)){
-            document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;
-            document.getElementById("timestamp").innerHTML = "";
+
             }
             else{
                 document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;
-                if(responseObj.event_name==move_right)move_right();
-                if(responseObj.event_name==move_left)move_left();
-                if(responseObj.event_name==move_down)goToNextRow();
-                if(responseObj.event_name==move_up)goToPrevRow();
-                document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;
+                if(responseObj.event_name=="move_right")move_right();
+                if(responseObj.event_name=='move_left')move_left();
+                if(responseObj.event_name=="move_down")goToNextRow();
+                if(responseObj.event_name=="move_up")goToPrevRow();
             }
             }
           };
