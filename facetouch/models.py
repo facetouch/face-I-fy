@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 # class Person():
@@ -25,3 +26,10 @@ class Item(models.Model):
     price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
     image = models.OneToOneField(Image, on_delete=models.CASCADE)
     section = models.ForeignKey(Section)
+
+class User(models.Model):
+    userId = models.IntegerField(max_length=5000,primary_key=True)
+
+class Cart(models.Model):
+    item = models.ForeignKey(Item)
+    user = models.ForeignKey(User)

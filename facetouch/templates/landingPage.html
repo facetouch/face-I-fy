@@ -68,7 +68,8 @@
     <button onclick="move_left()">Move Left</button>
     <button onclick="goToNextRow()">Go To Next Row</button>
     <button onclick="goToPrevRow()">Go To Prev Row</button>
-
+    <button onclick="selectItem()">Add To Cart</button>
+    <button onclick="checkout()">Checkout</button>
 
 
         <p id="demoXYZ"></p>
@@ -79,6 +80,7 @@
             let maxSections = 0;
             let sectionToCurrentItem = {};
             let sectionToItems = {};
+            var cartItems = new Set();
             $(document).ready(function() {
             {% for section in sections %}
                 var section_div_id = "content-slider" + "{{ section.id }}";
@@ -129,8 +131,9 @@
                 if(sectionItemIndex==0){
                     return;
                 }
+                console.log("currentIndex: " + sectionItemIndex)
                 {#console.log("currentIndex: " + sectionItemIndex)#}
-                sectionToCurrentItem[slider.selector] = sectionItemIndex - 1
+                sectionToCurrentItem[slider.selector] = sectionItemIndex - 1;
             }
 
             function goToNextRow(){
@@ -155,36 +158,50 @@
                 }, 1000);
             }
 
-             var duration = 500000000000,
-             interval = 1000,
-             intervalTimer;
-             intervalTimer = setInterval(function() {
-                 loadDoc();
-             }, interval);
-             setTimeout(function() {
-                 clearInterval(intervalTimer);
-             }, duration);
-        function loadDoc() {
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            var responseObj = JSON.parse(this.responseText);
-            if(!("event_name" in responseObj)){
-            document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;
-            document.getElementById("timestamp").innerHTML = "";
-            }
-            else{
-                document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;
-                if(responseObj.event_name==move_right)move_right();
-                if(responseObj.event_name==move_left)move_left();
-                if(responseObj.event_name==move_down)goToNextRow();
-                if(responseObj.event_name==move_up)goToPrevRow();
-                document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;
-            }
-            }
-          };
-          xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
-          xhttp.send();
-        }
+             function selectItem(){
+                let slider = slider_objs[sectionIndex];
+                let currentSectionalItem = sectionToCurrentItem[slider.selector];
+                itemId = sectionToItems[slider.selector][currentSectionalItem];
+                cartItems.add(itemId);
+                console.log(cartItems);
+             }
+             function checkout(){
+
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", "http://127.0.0.1:8000/addToCart/?cart_item_list=" + Array.from(cartItems).join(','), false );
+                xmlHttp.send( null );
+
+             }
+             <!--var duration = 500000000000,-->
+             <!--interval = 1000,-->
+             <!--intervalTimer;-->
+             <!--intervalTimer = setInterval(function() {-->
+                 <!--loadDoc();-->
+             <!--}, interval);-->
+             <!--setTimeout(function() {-->
+                 <!--clearInterval(intervalTimer);-->
+             <!--}, duration);-->
+        <!--function loadDoc() {-->
+          <!--var xhttp = new XMLHttpRequest();-->
+          <!--xhttp.onreadystatechange = function() {-->
+            <!--if (this.readyState == 4 && this.status == 200) {-->
+            <!--var responseObj = JSON.parse(this.responseText);-->
+            <!--if(!("event_name" in responseObj)){-->
+            <!--document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;-->
+            <!--document.getElementById("timestamp").innerHTML = "";-->
+            <!--}-->
+            <!--else{-->
+                <!--document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;-->
+                <!--if(responseObj.event_name==move_right)move_right();-->
+                <!--if(responseObj.event_name==move_left)move_left();-->
+                <!--if(responseObj.event_name==move_down)goToNextRow();-->
+                <!--if(responseObj.event_name==move_up)goToPrevRow();-->
+                <!--document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;-->
+            <!--}-->
+            <!--}-->
+          <!--};-->
+          <!--xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);-->
+          <!--xhttp.send();-->
+        <!--}-->
         </script>
 </body>
