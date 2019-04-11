@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from facetouch.views import create_event, EventsPageView, ItemDetailsView, SectionalDetailsView, SectionItemsView, GetCartItems
+from facetouch.views import create_event, EventsPageView, ItemDetailsView, SectionalDetailsView, SectionItemsView, GetCartItems, get_event
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^events/$', EventsPageView.as_view(), name='events'),  # Add this URL pattern
     url(r'^section/$', SectionalDetailsView.as_view(), name='sections'),
     url(r'^sectionsItems/$', SectionItemsView.as_view(), name='sections'),
+    url(r'^event/getFirst', get_event),
     url(r'^section/(?P<section_id>\d+)/items/$', ItemDetailsView.as_view(), name='items'),
     url(r'^addToCart/(?P<cart_item_list>\w+)/$',GetCartItems.as_view(), name='get_cart_items'),
 ]
