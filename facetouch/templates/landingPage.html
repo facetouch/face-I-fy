@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <link rel="stylesheet"  href="https://rawcdn.githack.com/sachinchoolur/lightslider/aa6c01e1e0fbf180eed67447471dfc24d29a3ae1/src/css/lightslider.css"/>
+    <link rel="stylesheet"  href="/static/css/lightslider.css"/>
     <style>
     	ul{
 			list-style: none outside none;
@@ -39,7 +39,7 @@
         .centered-and-cropped { object-fit: cover }
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://rawcdn.githack.com/sachinchoolur/lightslider/aa6c01e1e0fbf180eed67447471dfc24d29a3ae1/src/js/lightslider.js"></script>
+    <script src="/static/js/lightslider.js"></script>
     <script>
 
     </script>
@@ -53,7 +53,7 @@
             <div class="itemBold" id="div-content-slider{{ section.id }}">
                 <ul id="content-slider{{ section.id }}" class="content-slider">
                     {% for item in section.items %}
-                    <li>
+                    <li id="item{{ item.id }}">
                         <!--<h3>{{ item.name }}</h3>-->
                         <img class="centered-and-cropped" width="200" height="200" src="{{ item.image }}" />
                     </li>
@@ -75,44 +75,82 @@
         <script>
             slider_objs = []
             slider_divs_ids = []
+            let maxSections = 0;
+            let sectionToCurrentItem = {};
+            let sectionToItems = {};
             $(document).ready(function() {
             {% for section in sections %}
-                div_id = "content-slider"
-                slider = $("#" + div_id + "{{ section.id }}").lightSlider({
+                var section_div_id = "content-slider" + "{{ section.id }}";
+                slider = $("#" + section_div_id).lightSlider({
                 loop:true,
-                keyPress:true
-            });
+                    autoWidth:true,
+
+                keyPress:true,
+                    pager:false
+                });
+                sectionToCurrentItem['#'+section_div_id] = 0;
+                var section_list = []
+                {% for item in section.items %}
+                    section_list.push({{ item.id }})
+                {% endfor %}
+                sectionToItems['#'+section_div_id] = section_list
                 slider_objs.push(slider)
-                slider_divs_ids.push(div_id + "{{ section.id }}")
+                slider_divs_ids.push(section_div_id)
+                maxSections++;
             {% endfor %}
         });
-            let index = 0;
-            let maxSections = slider_objs.length - 1;
+            var sectionIndex = 0;
+
             function move_right() {
-                slider_objs[index].goToNextSlide();
+                {#slider_objs[sectionIndex].goToNextSlide();#}
+                let slider = slider_objs[sectionIndex];
+                let sectionItemIndex = sectionToCurrentItem[slider.selector];
+                if(sectionItemIndex==sectionToItems[slider.selector].length-1){
+                    return;
+                }
+                {#console.log("currentIndex: " + sectionItemIndex)#}
+
+                sectionToCurrentItem[slider.selector] = sectionItemIndex + 1
+                let previous_item_id = sectionToItems[slider.selector][sectionItemIndex]
+                let new_item_id = sectionToItems[slider.selector][sectionItemIndex+1]
+                console.log(previous_item_id)
+                console.log(new_item_id)
+                document.getElementById("item"+new_item_id).style.opacity = "0.5"
+                document.getElementById("item"+previous_item_id).style.opacity = "1.0"
+                console.log(sectionToCurrentItem)
+                slider_objs[sectionIndex].goToNextSlide();
+
             }
             function move_left() {
-                slider_objs[index].goToPrevSlide();
+                slider_objs[sectionIndex].goToPrevSlide();
+                let slider = slider_objs[sectionIndex];
+                let sectionItemIndex = sectionToCurrentItem[slider.selector];
+                if(sectionItemIndex==0){
+                    return;
+                }
+                {#console.log("currentIndex: " + sectionItemIndex)#}
+                sectionToCurrentItem[slider.selector] = sectionItemIndex - 1
             }
 
             function goToNextRow(){
-                index++;
-                if(index>maxSections)
+                if(sectionIndex==maxSections-1)
                     return;
-                document.getElementById(slider_divs_ids[index-1]).className = "item";
-                document.getElementById(slider_divs_ids[index]).className = "itemBold";
+                sectionIndex++;
+                {#document.getElementById(slider_divs_ids[sectionIndex-1]).className = "item";#}
+                {#document.getElementById(slider_divs_ids[sectionIndex]).className = "itemBold";#}
                 $('html, body').animate({
-                    scrollTop: $("#"+slider_divs_ids[index]).offset().top
+                    scrollTop: $("#"+slider_divs_ids[sectionIndex]).offset().top
                 }, 1000);
             }
             function goToPrevRow(){
-                index--;
-                if(index<0)
-                    return;
-                document.getElementById(slider_divs_ids[index+1]).className = "item";
-                document.getElementById(slider_divs_ids[index]).className = "itemBold";
+                if(sectionIndex == 0){
+                    return
+                }
+                sectionIndex--;
+                {#document.getElementById(slider_divs_ids[sectionIndex+1]).className = "item";#}
+                {#document.getElementById(slider_divs_ids[sectionIndex]).className = "itemBold";#}
                 $('html, body').animate({
-                    scrollTop: $("#"+slider_divs_ids[index]).offset().top
+                    scrollTop: $("#"+slider_divs_ids[sectionIndex]).offset().top
                 }, 1000);
             }
         </script>
