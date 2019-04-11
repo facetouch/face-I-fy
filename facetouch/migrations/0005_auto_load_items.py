@@ -116,9 +116,6 @@ items = [
      'image_url': 'https://ohsweetbasil.com/wp-content/uploads/Thai-peanut-sauce-noodles-and-chicken-ohsweetbasil.com_.jpg',
      'section': 'Main Course'
     },
-
-
-
 ]
 
 
