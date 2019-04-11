@@ -63,6 +63,7 @@
         {% endfor %}
     </div>
 {% endblock %}
+    <p id="event_name"></p>
     <button onclick="move_right()">Move Right</button>
     <button onclick="move_left()">Move Left</button>
     <button onclick="goToNextRow()">Go To Next Row</button>
@@ -115,5 +116,37 @@
                     scrollTop: $("#"+slider_divs_ids[index]).offset().top
                 }, 1000);
             }
+
+             var duration = 500000000000,
+             interval = 1000,
+             intervalTimer;
+             intervalTimer = setInterval(function() {
+                 loadDoc();
+             }, interval);
+             setTimeout(function() {
+                 clearInterval(intervalTimer);
+             }, duration);
+        function loadDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            var responseObj = JSON.parse(this.responseText);
+            if(!("event_name" in responseObj)){
+            document.getElementById("event_name").innerHTML = "Status: "+ responseObj.status;
+            document.getElementById("timestamp").innerHTML = "";
+            }
+            else{
+                document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;
+                if(responseObj.event_name==move_right)move_right();
+                if(responseObj.event_name==move_left)move_left();
+                if(responseObj.event_name==move_down)goToNextRow();
+                if(responseObj.event_name==move_up)goToPrevRow();
+                document.getElementById("timestamp").innerHTML = "Timestamp: "+responseObj.timestamp;
+            }
+            }
+          };
+          xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
+          xhttp.send();
+        }
         </script>
 </body>
