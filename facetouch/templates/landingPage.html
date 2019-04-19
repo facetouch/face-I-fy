@@ -54,6 +54,9 @@
 			width: 600px;
 		}
         .centered-and-cropped { object-fit: cover }
+        p{
+            color: white;
+        }
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/static/js/lightslider.js"></script>
@@ -84,6 +87,7 @@
     </div>
 {% endblock %}
     <p id="event_name"></p>
+    <p id="cid00123"></p>
     <button onclick="move_right()">Move Right</button>
     <button onclick="move_left()">Move Left</button>
     <button onclick="goToNextRow()">Go To Next Row</button>
@@ -179,14 +183,16 @@
             }
 
              function selectItem(){
+                document.getElementById("cid00123").innerHTML = "Select Item";
                 let slider = slider_objs[sectionIndex];
                 let currentSectionalItem = sectionToCurrentItem[slider.selector];
                 itemId = sectionToItems[slider.selector][currentSectionalItem];
                 cartItems.add(itemId);
+
                 console.log(cartItems);
              }
              function checkout(){
-
+                document.getElementById("cid00123").innerHTML = "Checkout";
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", "http://127.0.0.1:8000/addToCart/?cart_item_list=" + Array.from(cartItems).join(','), false );
                 xmlHttp.send( null );
@@ -216,6 +222,8 @@
                     if(responseObj.event_name=='move_left')move_left();
                     if(responseObj.event_name=="move_down")goToNextRow();
                     if(responseObj.event_name=="move_up")goToPrevRow();
+                    if(responseObj.event_name=="left_click"){checkout();}
+                    if(responseObj.event_name=="right_click"){selectItem();}
                 }
                 }
               };
