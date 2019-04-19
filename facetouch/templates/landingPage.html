@@ -65,7 +65,6 @@
     </script>
 </head>
 <body>
-
 <h1 align="center">FaceTouch</h1>
 {% block pagecontent %}
 	<div class="demo">
@@ -194,8 +193,8 @@
              function checkout(){
                 document.getElementById("cid00123").innerHTML = "Checkout";
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", "http://127.0.0.1:8000/addToCart/?cart_item_list=" + Array.from(cartItems).join(','), false );
-                xmlHttp.send( null );
+                xmlHttp.open( "GET", "http://127.0.0.1:8000/addToCart/" + Array.from(cartItems).join('a'), false );
+                xmlHttp.send();
 
              }
              var duration = 500000000000,
@@ -230,5 +229,6 @@
           xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);
           xhttp.send();
         }
+
         </script>
 </body>

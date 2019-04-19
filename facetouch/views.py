@@ -34,6 +34,7 @@ def get_event(request):
 
     return JsonResponse({'status': 'no new event'})
 
+
 class HomePageView(TemplateView):
     template_name = "index.html"
 
@@ -85,14 +86,13 @@ class SectionItemsView(TemplateView):
         context = {'sections': section_details}
         return render(request, 'landingPage.html', context)
 
+
 class GetCartItems(TemplateView):
     def get(self, request, *args, **kwargs):
-        item_id_list = self.kwargs['cart_item_list']
+        item_id_list = (self.kwargs['cart_item_list']).split("a")
         item_list = []
         for itemId in item_id_list:
             item = Item.objects.get(pk=itemId)
             item_list.append(item)
         context = {'cartItems': item_list}
-        return render(request, 'landingPage.html', context)
-
-
+        return render(request, 'cart_view.html', context)
