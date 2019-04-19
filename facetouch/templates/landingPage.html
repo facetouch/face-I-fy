@@ -9,32 +9,36 @@
     <style>
         h1{
             text-shadow: 3px 2px 5px;
-            color: #d5947e;
+            color: #000;
             font-size: 50px;
 
         }
         body {
-         background-image: url("/static/images/background.jpg");
+
+         <!--background-color: #FFFFFA;-->
         }
     	ul{
 			list-style: none outside none;
 		    padding-left: 0;
             margin: 0;
-            border-style: dotted;
-            border-width: 5px;
-            border-color: #d5947e ;
+            <!--border-style: dotted;-->
+            <!--border-width: 5px;-->
+            <!--border-color: #d5947e ;-->
 
 		}
         .demo {
             margin: auto;
-            width: 60%;
+            width: 100%;
         }
         .item{
             margin-bottom: 60px;
             /*background-color: #64f4aa;*/
         }
         h2{
-            color: white;
+            text-transform: uppercase;
+            color: #000;
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+
         }
         .itemBold{
             margin-bottom: 60px;
@@ -42,18 +46,32 @@
             <!--padding: 70px 0;-->
         }
 		.content-slider li{
-		    /*background-color: #64f4aa;*/
+		    background-color: #F7F4F4;
 		    text-align: center;
-		    color: #FFF;
+		    border: 0.8px solid;
+            box-shadow: 1px 5px 5px #888888;
+            width: 300px;
+            height: 340px;
+            padding: 0.5% 0.5% 0 0.5%;
+            font-family: "Comic Sans MS", cursive, sans-serif, Arial;
+            <!--font-size: 17px;-->
+            <!--font-weight: 500;-->
+            word-break: break-word;
+            box-sizing: inherit;
+            margin-left: 15px;
+            margin-right: 15px;
+
 		}
 		.content-slider h3 {
 		    margin: 0;
 		    padding: 70px 0;
 		}
 		.demo{
-			width: 600px;
+			margin-right: 150px;
+            margin-left: 150px;
 		}
         .centered-and-cropped { object-fit: cover }
+
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/static/js/lightslider.js"></script>
@@ -67,14 +85,20 @@
 	<div class="demo">
         {% for section in sections %}
         <h2>{{ section.name }}</h2>
+        <br/>
             <div class="itemBold" id="div-content-slider{{ section.id }}">
                 <ul id="content-slider{{ section.id }}" class="content-slider">
                     {% for item in section.items %}
                     <li id="item{{ item.id }}">
                         <!--<h3>{{ item.name }}</h3>-->
-                        <img class="centered-and-cropped" width="200" height="200" src="{{ item.image }}" />
-                        <p> {{ item.name }} </p>
-                        <p> $   {{ item.price }} </p>
+                        <img class="centered-and-cropped" width="300" height="280" src="{{ item.image }}"/>
+                        <p style="text-align:left; font-size:18px; font-weight:500">
+                            ${{ item.price }}
+                            <span style="float:right;">
+                                {{ item.name }}
+                            </span>
+
+                        </p>
                     </li>
                     {% endfor %}
                 </ul>
@@ -105,10 +129,9 @@
                 var section_div_id = "content-slider" + "{{ section.id }}";
                 slider = $("#" + section_div_id).lightSlider({
                 loop:true,
-                    autoWidth:true,
-
+                autoWidth:true,
                 keyPress:true,
-                    pager:false
+                pager:false
                 });
                 sectionToCurrentItem['#'+section_div_id] = 0;
                 var section_list = []
