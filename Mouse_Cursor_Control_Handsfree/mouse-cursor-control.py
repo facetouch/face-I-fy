@@ -50,7 +50,7 @@ BLACK_COLOR = (0, 0, 0)
 # Initialize Dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
 
-shape_predictor = "../static/model/shape_predictor_68_face_landmarks.dat"
+shape_predictor = "/Users/anip/Develop/facetouch/static/model/shape_predictor_68_face_landmarks.dat"
 
 
 detector = dlib.get_frontal_face_detector()
