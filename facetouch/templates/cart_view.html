@@ -1,5 +1,12 @@
 <html>
-{% for items in cartItems %}
-    <p>{{ items.image.url }}</p>
-{% endfor %}
+<h1 align="center">Cart Items</h1>
+<ul>
+    {% for item in cartItems %}
+        <div align="center">
+            <img class="centered-and-cropped" width="200" height="200" src="{{ item.image.url }}" />
+            <p> {{ item.name }} </p>
+            <p> $   {{ item.price }} </p>
+        </div>
+    {% endfor %}
+</ul>
 </html>

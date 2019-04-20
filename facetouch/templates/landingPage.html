@@ -184,42 +184,8 @@
                 cartItems.add(itemId);
                 console.log(cartItems);
              }
-             function checkout(){
-
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", "http://127.0.0.1:8000/addToCart/" + Array.from(cartItems).join('a'), false );
-                xmlHttp.send();
-
+             function checkout() {
+                 window.location.href = "http://127.0.0.1:8000/addToCart/" + Array.from(cartItems).join('a')
              }
-             <!--var duration = 500000000000,-->
-             <!--interval = 1000,-->
-             <!--intervalTimer;-->
-             <!--intervalTimer = setInterval(function() {-->
-                 <!--loadDoc();-->
-             <!--}, interval);-->
-             <!--setTimeout(function() {-->
-                 <!--clearInterval(intervalTimer);-->
-             <!--}, duration);-->
-            <!--function loadDoc() {-->
-              <!--var xhttp = new XMLHttpRequest();-->
-              <!--xhttp.onreadystatechange = function() {-->
-                <!--if (this.readyState == 4 && this.status == 200) {-->
-                <!--var responseObj = JSON.parse(this.responseText);-->
-                <!--console.log(this.responseText);-->
-                <!--if(!("event_name" in responseObj)){-->
-
-                <!--}-->
-                <!--else{-->
-                    <!--document.getElementById("event_name").innerHTML = "Event Name: "+ responseObj.event_name;-->
-                    <!--if(responseObj.event_name=="move_right")move_right();-->
-                    <!--if(responseObj.event_name=='move_left')move_left();-->
-                    <!--if(responseObj.event_name=="move_down")goToNextRow();-->
-                    <!--if(responseObj.event_name=="move_up")goToPrevRow();-->
-                <!--}-->
-                <!--}-->
-              <!--};-->
-          <!--xhttp.open("GET", "http://127.0.0.1:8000/event/getFirst", true);-->
-          <!--xhttp.send();-->
-        <!--}-->
         </script>
 </body>

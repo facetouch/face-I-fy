@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 import json
 from facetouch.models import Event, Section, Item, Image
@@ -91,6 +91,8 @@ class GetCartItems(TemplateView):
     def get(self, request, *args, **kwargs):
         item_id_list = (self.kwargs['cart_item_list']).split("a")
         item_list = []
+        # import pdb;
+        # pdb.set_trace()
         for itemId in item_id_list:
             item = Item.objects.get(pk=itemId)
             item_list.append(item)
