@@ -8,14 +8,40 @@
     <link rel="stylesheet"  href="/static/css/lightslider.css"/>
     <style>
         h1{
-            text-shadow: 3px 2px 5px;
+            <!--text-shadow: 3px 2px 5px;-->
             color: #000;
             font-size: 50px;
 
         }
         body {
 
-         <!--background-color: #FFFFFA;-->
+         background-color: #FFFFFA;
+
+        }
+        .image-container {
+          background-image: url("https://elama-vet.clinic/wp-content/uploads/2018/05/1491.jpg");
+          background-size: contain;
+          <!--background-size: cover;-->
+          position: relative;
+          height: 350px;
+          <!--opacity: 0.5;-->
+
+        }
+
+        .text {
+          background-color: white;
+          color: black;
+          font-size: 7vw;
+          font-weight: bold;
+          margin: 0 auto;
+          padding: 1px;
+          width: 50%;
+          text-align: center;
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          mix-blend-mode: screen;
         }
     	ul{
 			list-style: none outside none;
@@ -26,14 +52,22 @@
             <!--border-color: #d5947e ;-->
 
 		}
+		.facetouch_div{
+		color: #999999;
+        font-family: arial, sans-serif;
+        font-size: 70px;
+        font-weight: bold;
+        margin-top: 0px;
+}
         .item{
             margin-bottom: 60px;
-            /*background-color: #64f4aa;*/
+            /*background-color: #64f4aa;*/CFV
         }
         h2{
-            text-transform: uppercase;
+                text-transform: uppercase;
             color: #000;
-            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+            font-weight: 700;
+            font-family: "zYatra One";
 
         }
         .itemBold{
@@ -63,9 +97,9 @@
 		    padding: 70px 0;
 		}
 		.demo{
-            padding-right: 100px;
+            padding-right: 70px;
             alignment: center;
-            padding-left: 100px;
+            padding-left: 70px;
 		}
         .centered-and-cropped { object-fit: cover }
     </style>
@@ -76,7 +110,10 @@
     </script>
 </head>
 <body>
-<h1 align="center">FaceTouch</h1>
+<!--<h1 align="center" class="facetouch_div">FaceTouch</h1>-->
+<div class="image-container">
+  <div class="text">FACETOUCH</div>
+</div>
 {% block pagecontent %}
 	<div class="demo">
         {% for section in sections %}
@@ -113,6 +150,7 @@
 
 
         <p id="demoXYZ"></p>
+
 
         <script>
             slider_objs = []
