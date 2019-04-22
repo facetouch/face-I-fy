@@ -43,6 +43,13 @@
           transform: translate(-50%, -50%);
           mix-blend-mode: screen;
         }
+        .toast{
+            width: 75%;
+            position: fixed;
+            left: 50%;
+            color: darkred;
+            {#margin-left: -37.5%;#}
+        }
     	ul{
 			list-style: none outside none;
 		    padding-left: 0;
@@ -111,6 +118,7 @@
 </head>
 <body>
 <!--<h1 align="center" class="facetouch_div">FaceTouch</h1>-->
+<div hidden="true" id="message" class="toast">Item Added To Cart</div>
 <div class="image-container">
   <div class="text">FACETOUCH</div>
 </div>
@@ -241,12 +249,24 @@
                 let currentSectionalItem = sectionToCurrentItem[slider.selector];
                 itemId = sectionToItems[slider.selector][currentSectionalItem];
                 cartItems.add(itemId);
-
+                showCartLabel()
                 console.log(cartItems);
+             }
+             function showCartLabel(){
+                   $( document ).ready(function(){
+                    $('#message').fadeIn('slow', function(){
+                            $('#message').hidden=false;
+                            $('#message').delay(5000).fadeOut();
+                        });
+                     {#$('#message').hidden=true;#}
+                   });
+                    {#$('#message').hidden=true;#}
              }
 
              function checkout() {
-                 window.location.href = "http://127.0.0.1:8000/addToCart/" + Array.from(cartItems).join('a')
+                 var items = Array.from(cartItems).join('a')
+                 if(items.length!=0)
+                    window.location.href = "http://127.0.0.1:8000/addToCart/" + Array.from(cartItems).join('a')
              }
              var duration = 500000000000,
              interval = 1000,
