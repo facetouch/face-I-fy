@@ -6,7 +6,7 @@ idna==2.8
 imutils==0.5.2
 numpy==1.13.3
 oauthlib==3.0.0
-opencv-python==4.0.0.21
+opencv-python==4.2.0.32
 pbr==5.1.2
 Pillow==5.4.1
 predicthq==0.0.17
