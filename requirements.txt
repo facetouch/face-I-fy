@@ -4,7 +4,7 @@ Django==1.11.20
 dnspython==1.16.0
 idna==2.8
 imutils==0.5.2
-numpy==1.13.3
+numpy==1.22.0
 oauthlib==3.0.0
 opencv-python==4.0.0.21
 pbr==5.1.2
